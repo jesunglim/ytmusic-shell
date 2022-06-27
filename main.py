@@ -1,10 +1,17 @@
 import os
 import webbrowser as web
 
-link = 'https://www.youtube.com/watch?v=ioNng23DkIM'
+playlist = {}
+playlist = {'BLACKPINK - ‘뚜두뚜두 (DDU-DU DDU-DU)’ M/V' : 
+'https://www.youtube.com/watch?v=IHNzOHi8sJs'}
+key_list = list(playlist.keys())
 
-web.open(link)
 
-i = input('입력: ')
-if i == 'y':
+print(playlist)
+
+while(1):
+    i = input('입력: ')
     os.system("taskkill /im chrome.exe /f")
+    if i == '1':
+        web.open(playlist[key_list[0]])
+        
