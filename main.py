@@ -22,15 +22,22 @@ if "__main__" == __name__:
 
 
     song = 0
-    p = ytplayer().player(url[song])
-    p.play()
+    
 
     while True:
         cmd = input('command :')
         print("song:", song)
-        if cmd == 'n':
+
+        if cmd == 'p':
+            p = ytplayer().player(url[song])
+            p.play()
+
+        elif cmd == 'n':
             p.stop()
             del p
             song += 1
             p = ytplayer().player(url[song])
             p.play()
+
+        elif cmd == 'list':
+            print(url)
