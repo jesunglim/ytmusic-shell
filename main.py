@@ -29,7 +29,7 @@ if "__main__" == __name__:
         cmd = input('command :')
         print("song:", song)
         if cmd == 'n':
-
+            p.stop()
             del p
             song += 1
             p = ytplayer().player(url[song])
