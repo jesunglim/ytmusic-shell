@@ -1,17 +1,36 @@
-import os
-import webbrowser as web
+import time
+import pafy
+import vlc
+import asyncio
 
-playlist = {}
-playlist = {'BLACKPINK - ‘뚜두뚜두 (DDU-DU DDU-DU)’ M/V' : 
-'https://www.youtube.com/watch?v=IHNzOHi8sJs'}
-key_list = list(playlist.keys())
+class ytplayer:
+    def player(self, song):
+        video = pafy.new(song)
+        best = video.getbestaudio() 
+        media = vlc.MediaPlayer(best.url)
+        return media
+
+    def play(self, media):
+        media.play()
+
+if "__main__" == __name__:
+
+    # url of the video 
+    url = []
+    url.append("https://www.youtube.com/watch?v=dyRsYk0LyA8")
+    url.append("https://www.youtube.com/watch?v=2S24-y0Ij3Y")
 
 
-print(playlist)
+    song = 0
+    p = ytplayer().player(url[song])
+    p.play()
 
-while(1):
-    i = input('입력: ')
-    os.system("taskkill /im chrome.exe /f")
-    if i == '1':
-        web.open(playlist[key_list[0]])
-        
+    while True:
+        cmd = input('command :')
+        print("song:", song)
+        if cmd == 'n':
+
+            del p
+            song += 1
+            p = ytplayer().player(url[song])
+            p.play()
