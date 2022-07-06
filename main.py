@@ -17,7 +17,7 @@ if "__main__" == __name__:
 
     # url of the video 
     url = []
-    url.append("https://www.youtube.com/watch?v=dyRsYk0LyA8")
+    url.append("https://www.youtube.com/watch?v=L5CV53wCWO0")
     url.append("https://www.youtube.com/watch?v=2S24-y0Ij3Y")
 
 
@@ -25,12 +25,14 @@ if "__main__" == __name__:
     
 
     while True:
+        p = ytplayer().player(url[song])
+        p.play()
+
+        print('재생중 [ {} ] 볼륨 : {}' .format(url[song], p.audio_get_volume()))
         cmd = input('command :')
-        print("song:", song)
 
         if cmd == 'p':
-            p = ytplayer().player(url[song])
-            p.play()
+            print()
 
         elif cmd == 'n':
             p.stop()
@@ -40,4 +42,16 @@ if "__main__" == __name__:
             p.play()
 
         elif cmd == 'list':
-            print(url)
+            for i in url:
+                print(i)
+
+        elif cmd == 's':
+            print(p.get_position())
+
+        # 다음곡 넘어가기
+        if p.get_position() >= 0.99:
+            p.stop()
+            del p
+            song += 1
+            p = ytplayer().player(url[song])
+            p.play()
