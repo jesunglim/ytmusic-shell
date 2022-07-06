@@ -16,9 +16,9 @@ class ytplayer:
 if "__main__" == __name__:
 
     # url of the video 
-    url = []
-    url.append("https://www.youtube.com/watch?v=L5CV53wCWO0")
-    url.append("https://www.youtube.com/watch?v=2S24-y0Ij3Y")
+    url = {}
+    url['10sec song'] = "https://www.youtube.com/watch?v=L5CV53wCWO0"
+    url['BLACKPINK kill this love'] = "https://www.youtube.com/watch?v=2S24-y0Ij3Y"
 
 
     song = 0
@@ -45,8 +45,17 @@ if "__main__" == __name__:
             for i in url:
                 print(i)
 
-        elif cmd == 's':
-            print(p.get_position())
+        elif cmd == 'a':
+            name = input('노래 제목:')
+            addr = input('유튜브 주소:')
+            url[name] = addr
+
+        else:
+            print('n : next song')
+            print('a : add playlist')
+            print('list : song list')
+
+
 
         # 다음곡 넘어가기
         if p.get_position() >= 0.99:
